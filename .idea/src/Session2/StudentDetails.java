@@ -14,11 +14,11 @@ public class StudentDetails {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student identifier: ");
         int studentId = scanner.nextInt();
-        System.out.println("Student ID: " + studentId);
-        String firstName = scanner.nextLine();
         System.out.println("Enter student first name: ");
-        String lastName = scanner.next();
+        String firstName = scanner.next();
         System.out.println("Enter student last name: ");
+        String lastName = scanner.next();
+        System.out.println("Enter student age: ");
         int age = scanner.nextInt();
 
         System.out.println("\n ===== Student details =====");
