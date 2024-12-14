@@ -3,7 +3,7 @@ package Session4;
 import java.util.Scanner;
 import java.util.HashSet;
 
-public class StudentManagement {
+class StudentManagementWithoutHashSet {
 
     static class Student {
         int studentId;
@@ -46,16 +46,14 @@ public class StudentManagement {
                     System.out.println("Enter student ID: ");
                     int studentId = scanner.nextInt();
                     scanner.nextLine();
-
+                    String firstName = null;
                     while (studentIds.contains(studentId)) {
                         System.out.println("Student ID already exists. Please enter a unique student ID: ");
                         studentId = scanner.nextInt();
                         scanner.nextLine();
+                        System.out.println("Enter first name: ");
+                        firstName = scanner.nextLine();
                     }
-
-                    System.out.println("Enter first name: ");
-                    String firstName = scanner.nextLine();
-
                     System.out.println("Enter last name: ");
                     String lastName = scanner.nextLine();
 
