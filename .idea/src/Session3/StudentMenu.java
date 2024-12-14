@@ -3,7 +3,7 @@ package Session3;
 import java.util.Scanner;
 
 public class StudentMenu {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // entry point to the console application. This is method signature and is void to allow no vlaue in response
         Scanner scanner = new Scanner(System.in);
 
         int studentID = 0;
