@@ -1,9 +1,9 @@
-package Session4;
-
+package Session6;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.HashSet;
+//import java.util.HashSet;
 
-class StudentManagementWithoutHashSet {
+public class StudentManagementPersonalChanges {
 
     static class Student {
         int studentId;
@@ -12,7 +12,7 @@ class StudentManagementWithoutHashSet {
         int studentAge;
 
         Student(int id, String fName, String lName, int age) {
-            this.studentId = id; // replaces that id if needed
+            this.studentId = id;
             this.firstName = fName;
             this.lastName = lName;
             this.studentAge = age;
@@ -21,13 +21,15 @@ class StudentManagementWithoutHashSet {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        HashSet<Integer> studentIds = new HashSet<>();
-        Student[] students = new Student[5];
-        int studentCount = 0;
+
+        ArrayList<Student> students = new ArrayList<Student>(); // ArrayList to store student objects
+//        HashSet<Integer> studentIds = new HashSet<>(); // HashSet to store student IDs
+//        Student[] students = new Student[5]; // Array to store student objects
+//        int studentCount = 0; // Counter to keep track of number of students
 
         //Student student = new Student(0, "", "", 0);
 
-        while (true) {
+        while (true) { // Infinite loop to display menu
             System.out.println("==== Student Menu ====");
             System.out.println("1. Enter student details");
             System.out.println("2. Display student details");
@@ -39,21 +41,31 @@ class StudentManagementWithoutHashSet {
 
             switch (choice) {
                 case 1:
-                    if (studentCount >= 5) {
+                    if (students.size() >= 5) {
                         System.out.println("Maximum number of students reached.");
                         break;
                     }
                     System.out.println("Enter student ID: ");
                     int studentId = scanner.nextInt();
                     scanner.nextLine();
-                    String firstName = null;
-                    while (studentIds.contains(studentId)) {
-                        System.out.println("Student ID already exists. Please enter a unique student ID: ");
-                        studentId = scanner.nextInt();
-                        scanner.nextLine();
-                        System.out.println("Enter first name: ");
-                        firstName = scanner.nextLine();
-                    }
+
+                    boolean idExists;
+                    do {
+                        idExists = false;
+                        for (Student s : students) {
+                            if (s.studentId == studentId) {
+                                idExists = true;
+                                System.out.println("Student ID already exists. Please enter a unique student ID: ");
+                                studentId = scanner.nextInt();
+                                scanner.nextLine();
+                                break;
+                            }
+                        }
+                    } while (idExists);
+
+                    System.out.println("Enter first name: ");
+                    String firstName = scanner.nextLine();
+
                     System.out.println("Enter last name: ");
                     String lastName = scanner.nextLine();
 
@@ -61,17 +73,14 @@ class StudentManagementWithoutHashSet {
                     int studentAge = scanner.nextInt();
 
                     Student student = new Student(studentId, firstName, lastName, studentAge);
-                    students[studentCount] = student;
-                    studentIds.add(studentId);
-                    studentCount++;
+                    students.add(student);
                     System.out.println("Information saved successfully.");
                     break;
                 case 2:
-                    if (studentCount == 0) {
+                    if (students.isEmpty()) {
                         System.out.println("No student data found.");
                     } else {
-                        for (int i = 0; i < studentCount; i++) {
-                            Student s = students[i];
+                        for (Student s: students) {
                             System.out.println("===== Student Details =====");
                             System.out.println("Student ID: " + s.studentId);
                             System.out.println("First Name: " + s.firstName);
@@ -85,14 +94,10 @@ class StudentManagementWithoutHashSet {
                     System.out.println("Enter student id to delete: ");
                     int id = scanner.nextInt();
                     boolean found = false;
-                    for (int i = 0; i < studentCount; i++) {
-                        if (students[i].studentId == id) {
+                    for (Student s : students) { // Corrected loop
+                        if (s.studentId == id) {
+                            students.remove(s); // Corrected deletion logic
                             found = true;
-                            for (int j = i; j < studentCount - 1; j++) {
-                                students[j] = students[j + 1];
-                            }
-                            students[studentCount - 1] = null;
-                            studentCount--;
                             System.out.println("Student deleted successfully.");
                             break;
                         }
@@ -101,10 +106,13 @@ class StudentManagementWithoutHashSet {
                         System.out.println("Student ID not found.");
                     }
                     break;
-                case 4:
-                    scanner.close();
-                    System.exit(0);
-                    break;
+            case 4:
+                scanner.close();
+                System.exit(0);
+                break;
+
+                default:
+                 System.out.println("Invalid choice");
             }
         }
     }

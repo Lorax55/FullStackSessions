@@ -9,6 +9,8 @@ public class MatrixExample {
                 {3, 7, 5}
         };
 
+
+
         int sum = 0;
         for (int i = 0; i < matrix.length; i++) {
             int[] row = matrix[i];

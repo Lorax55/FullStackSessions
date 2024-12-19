@@ -16,7 +16,7 @@ public class AgeCategorizer {
         int age = scanner.nextInt();
 
         if (age < 13) {
-            System.out.println("Child");
+            System.out.println("Child"); // use return instead of System.out.println
         } else if (age >= 13 && age <= 19) {
             System.out.println("Teenager");
         } else if (age >= 20 && age <= 59) {
