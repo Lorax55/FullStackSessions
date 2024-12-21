@@ -1,4 +1,4 @@
-package Session7.SMS;
+package Session7.sms;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,9 +8,10 @@ public class StudentManagementClasswork {
 
 
     public static void main(String[] args) {
+        ArrayList<Student> students = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Student> students = new ArrayList<>();
+
 
         while (true) {
             System.out.println("===== Student Menu =====");
@@ -50,20 +51,46 @@ public class StudentManagementClasswork {
                     System.out.println("Enter student age: ");
                     int studentAge = scanner.nextInt();
 
-                    Student student = new Student(studentId, firstName, lastName, studentAge);
+                    System.out.println("Enter student major: ");
+                    String studentMajor = scanner.next();
+
+                    Student student = new Student(studentId, firstName, lastName, studentAge, studentMajor);
 
                     students.add(student);
 
                     System.out.println("Information saved successfully" + student.toString());
                     break;
                 case 2:
-                    for (int i = 0; i < students.size(); i++) {
-                        Student s = students.get(i);
-                        System.out.printf("%-10d %-20s %-20s %-5d%n",
+                    System.out.printf("%-10s %-20s %-20s %-10s %-20s%n", "Student ID", "First Name", "Last Name", "Age", "Major");
+                    System.out.println("-----------------------------------------------------------------------------------------");
+                    for (Student s : students) {
+                        System.out.printf("%-10d %-20s %-20s %-10d %-20s%n",
                                 s.studentId,
                                 s.firstName,
                                 s.lastName,
-                                s.studentAge); //add column names and some seperators to make it look nic
+                                s.studentAge,
+                                s.studentMajor);
+                    }
+//                    System.out.printf("%-10d %-20s %-20s %-10s %-20s%n", "Student ID", "First Name", "Last Name", "Age", "Major");
+//                    System.out.println("-----------------------------------------------------------------------------------------");
+//                    for (Student s : students) {
+//                        System.out.printf("%-10d %-20s %-20s %-10d %-20s%n",
+//                                s.studentId,
+//                                s.firstName,
+//                                s.lastName,
+//                                s.studentAge,
+//                                s.studentMajor);
+//                    System.out.printf("%-10d %-20s %-20s %-5d%n", "Student ID", "Student Name", "Student Last Name", "Student Age", "Student Major");
+//                    System.out .println("-----------------------------------------------------------------------------");
+//                    for (int i = 0; i < students.size(); i++) {
+//                        Student s = students.get(i);
+//
+//                        System.out.printf("%-10d %-20s %-20s %-5d% %-20s%n",
+//                                s.studentId,
+//                                s.firstName,
+//                                s.lastName,
+//                                s.studentAge,
+//                                s.studentMajor); //add column names and some seperators to make it look nic
 
 //                        System.out.println("===== Student Details =====");
 //                        System.out.println("Student ID: " + s.studentId);
@@ -71,7 +98,7 @@ public class StudentManagementClasswork {
 //                        System.out.println("Last Name: " + s.lastName);
 //                        System.out.println("Age: " + s.studentAge);
 //                        System.out.println("===== End of Student Details =====");
-                    }
+ //                   }
                     break;
 
                 case 3:
@@ -102,6 +129,8 @@ public class StudentManagementClasswork {
                             s.lastName = scanner.nextLine();
                             System.out.println("Enter new student age: ");
                             s.studentAge = scanner.nextInt();
+                            System.out.println("Enter new student major: ");
+                            s.studentMajor = scanner.next();
 
                             System.out.println("Student edited successfully");
                             Found = true;
