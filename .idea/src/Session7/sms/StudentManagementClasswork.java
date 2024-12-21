@@ -71,6 +71,7 @@ public class StudentManagementClasswork {
                                 s.studentAge,
                                 s.studentMajor);
                     }
+                    System.out.println("-----------------------------------------------------------------------------------------");
 //                    System.out.printf("%-10d %-20s %-20s %-10s %-20s%n", "Student ID", "First Name", "Last Name", "Age", "Major");
 //                    System.out.println("-----------------------------------------------------------------------------------------");
 //                    for (Student s : students) {
