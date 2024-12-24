@@ -17,30 +17,35 @@ public class StudentManagementClasswork {
             System.out.println("===== Student Menu =====");
             System.out.println("1. Enter student details");
             System.out.println("2. Display student details");
-            System.out.println("3. Delete student");
-            System.out.println("4. Edit student");
-            System.out.println("5. Exit");
+            System.out.println("3. Display student count");
+            System.out.println("4. Delete student");
+            System.out.println("5. Edit student");
+            System.out.println("6. Exit");
             System.out.println("Enter your choice: ");
 
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    boolean idExists = false;
-                    System.out.println("Enter student id: ");
-                    int studentId = scanner.nextInt();
-                    scanner.nextLine();
 
-                    try {
-                        students.get(studentId);
-                        idExists = true;
-                        break;
-                    } catch (IndexOutOfBoundsException e) {
-
-                    }
-                    if (idExists) {
-                        System.out.println("Student with id " + studentId + " already exists");
-                        break;
-                    }
+                  //  boolean idExists = false;
+                    // student id generator 1,2...n
+                    int studentid = Student.generateStudentid();
+                    System.out.println("Your Student ID is: " + studentid);
+//                    System.out.println("Enter student id: ");
+//                    int studentId = scanner.nextInt();
+//                    scanner.nextLine();
+//
+//                    try {
+//                        students.get(studentIdGenerator);
+//                        idExists = true;
+//                        break;
+//                    } catch (IndexOutOfBoundsException e) {
+//
+//                    }
+//                    if (idExists) {
+//                        System.out.println("Student with id " + studentId + " already exists");
+//                        break;
+//                    }
 
                     System.out.println("Enter student first name: ");
                     String firstName = scanner.next();
@@ -48,13 +53,28 @@ public class StudentManagementClasswork {
                     System.out.println("Enter student last name: ");
                     String lastName = scanner.next();
 
+
                     System.out.println("Enter student age: ");
                     int studentAge = scanner.nextInt();
-
+                        while (studentAge <= 18 || studentAge >= 150) {
+                            System.out.println("Invalid age. Please enter a valid age");
+                            studentAge = scanner.nextInt();
+                        }
                     System.out.println("Enter student major: ");
                     String studentMajor = scanner.next();
+                       boolean validMajor = false;
+                    while (!validMajor) {
+                        if (studentMajor.equalsIgnoreCase("Art") || studentMajor.equalsIgnoreCase("Economics") || studentMajor.equalsIgnoreCase("Math")) {
+                            validMajor = true;
+                        } else {
+                            System.out.println("Invalid major. Please enter a valid major: ");
+                            studentMajor = scanner.next();
+                        }
+                        // (!studentMajor.equalsIgnoreCase("Art") && !studentMajor.equalsIgnoreCase("Economics") && !studentMajor.equalsIgnoreCase("Math")) {
+                    //System.out.println("Invalid major. Please enter a valid major: ");
+                }
 
-                    Student student = new Student(studentId, firstName, lastName, studentAge, studentMajor);
+                    Student student = new Student(studentid, firstName, lastName, studentAge, studentMajor);
 
                     students.add(student);
 
@@ -72,6 +92,8 @@ public class StudentManagementClasswork {
                                 s.studentMajor);
                     }
                     System.out.println("-----------------------------------------------------------------------------------------");
+                    // add Student Count
+
 //                    System.out.printf("%-10d %-20s %-20s %-10s %-20s%n", "Student ID", "First Name", "Last Name", "Age", "Major");
 //                    System.out.println("-----------------------------------------------------------------------------------------");
 //                    for (Student s : students) {
@@ -101,23 +123,27 @@ public class StudentManagementClasswork {
 //                        System.out.println("===== End of Student Details =====");
  //                   }
                     break;
-
                 case 3:
+                    System.out.println("Number of students total: " + Student.studentCount);
+                    break;
+                case 4:
                     System.out.println("Enter student id to delete: ");
                     int id = scanner.nextInt();
-                    idExists = false;
-                    students.remove(id);
-                    System.out.println("Student deleted successfully");
+                    boolean idExists = false;
+                    for (Student s : students) {
+                        if (s.studentId == id) {
+                            students.remove(s);
+                            Student.studentCount--;
+                            idExists = true;
+                            System.out.println("Student deleted successfully");
+                            break;
+                        }
+                    }
                     if (!idExists) {
                         System.out.println("Student with id " + id + " does not exist");
                     }
                     break;
-                case 4:
-                    // define student to edit
-                    // get student id.
-                    // Student found or not found
-                    // set new values
-                    //save
+                case 5:
                     System.out.println("Enter student id to edit: ");
                     int idToEdit = scanner.nextInt();
                     scanner.nextLine();
@@ -140,7 +166,7 @@ public class StudentManagementClasswork {
                     if (!Found) {
                         System.out.println("Student with id " + idToEdit + " does not exist");
                     }
-                case 5:
+                case 6:
                     scanner.close();
                     System.exit(0);
                     break;

@@ -6,13 +6,20 @@ public class Student {
     String lastName;
     int studentAge;
     String studentMajor;
+    static int studentCount = 0;
+
 
      public Student(int id, String fName, String lName, int Age, String major) {
+
         this.studentId = id;
         this.firstName = fName;
         this.lastName = lName;
         this.studentAge = Age;
         this.studentMajor = major;
+        studentCount++;
+    }
+    public static int generateStudentid() {
+         return studentCount +1;
     }
     @Override
     public String toString() {
