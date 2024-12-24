@@ -11,16 +11,44 @@ public class Student {
 
      public Student(int id, String fName, String lName, int Age, String major) {
 
-        this.studentId = id;
-        this.firstName = fName;
-        this.lastName = lName;
-        this.studentAge = Age;
-        this.studentMajor = major;
-        studentCount++;
+         this.studentId = id;
+         this.setFirstName(fName);
+         this.setLastName(lName);
+         this.setStudentAge(Age);
+         this.setStudentMajor(major);
+         studentCount++;
     }
-    public static int generateStudentid() {
-         return studentCount +1;
+    public static int generateStudentId() {
+        return studentCount + 1;
+        }
+    public int getStudentId() {
+        return studentId;
     }
+        public String getFirstName() {
+            return firstName;
+        }
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+        public String getLastName() {
+            return lastName;
+        }
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+        public int getStudentAge() {
+            return studentAge;
+        }
+        public void setStudentAge(int studentAge) {
+            this.studentAge = studentAge;
+        }
+        public String getStudentMajor() {
+            return studentMajor;
+        }
+        public void setStudentMajor(String studentMajor) {
+            this.studentMajor = studentMajor;
+        }
+
     @Override
     public String toString() {
         //return this.studentId + " " + this.firstName + " " + this.lastName + " " + this.studentAge;

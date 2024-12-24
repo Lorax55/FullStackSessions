@@ -1,11 +1,10 @@
 package Session7.sms;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentManagementClasswork {
-
-
 
     public static void main(String[] args) {
         ArrayList<Student> students = new ArrayList<>();
@@ -27,25 +26,8 @@ public class StudentManagementClasswork {
             switch (choice) {
                 case 1:
 
-                  //  boolean idExists = false;
-                    // student id generator 1,2...n
-                    int studentid = Student.generateStudentid();
+                    int studentid = Student.generateStudentId();
                     System.out.println("Your Student ID is: " + studentid);
-//                    System.out.println("Enter student id: ");
-//                    int studentId = scanner.nextInt();
-//                    scanner.nextLine();
-//
-//                    try {
-//                        students.get(studentIdGenerator);
-//                        idExists = true;
-//                        break;
-//                    } catch (IndexOutOfBoundsException e) {
-//
-//                    }
-//                    if (idExists) {
-//                        System.out.println("Student with id " + studentId + " already exists");
-//                        break;
-//                    }
 
                     System.out.println("Enter student first name: ");
                     String firstName = scanner.next();
@@ -56,7 +38,7 @@ public class StudentManagementClasswork {
 
                     System.out.println("Enter student age: ");
                     int studentAge = scanner.nextInt();
-                        while (studentAge <= 18 || studentAge >= 150) {
+                        while (studentAge < 18 || studentAge > 150) {
                             System.out.println("Invalid age. Please enter a valid age");
                             studentAge = scanner.nextInt();
                         }
@@ -85,11 +67,11 @@ public class StudentManagementClasswork {
                     System.out.println("-----------------------------------------------------------------------------------------");
                     for (Student s : students) {
                         System.out.printf("%-10d %-20s %-20s %-10d %-20s%n",
-                                s.studentId,
-                                s.firstName,
-                                s.lastName,
-                                s.studentAge,
-                                s.studentMajor);
+                                s.getStudentId(),
+                                s.getFirstName(),
+                                s.getLastName(),
+                                s.getStudentAge(),
+                                s.getStudentMajor());
                     }
                     System.out.println("-----------------------------------------------------------------------------------------");
                     // add Student Count
@@ -151,7 +133,7 @@ public class StudentManagementClasswork {
                     for (Student s : students) { // for student searched in students we will start doing certain things
                         if (s.studentId == idToEdit) { //IF STUDENT IF == EDIT
                             System.out.println("Enter new student first name: ");
-                            s.firstName = scanner.nextLine(); // student foind and print new pobject
+                            s.firstName = scanner.nextLine(); // student found and print new pobject
                             System.out.println("Enter new student last name: ");
                             s.lastName = scanner.nextLine();
                             System.out.println("Enter new student age: ");
