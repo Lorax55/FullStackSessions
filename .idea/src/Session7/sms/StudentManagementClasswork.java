@@ -35,13 +35,24 @@ public class StudentManagementClasswork {
                     System.out.println("Enter student last name: ");
                     String lastName = scanner.next();
 
-
-                    System.out.println("Enter student age: ");
-                    int studentAge = scanner.nextInt();
-                        while (studentAge < 18 || studentAge > 150) {
-                            System.out.println("Invalid age. Please enter a valid age");
-                            studentAge = scanner.nextInt();
+                    int studentAge;
+                    while (true) {
+                        System.out.println("Enter student age: ");
+                        studentAge = scanner.nextInt();
+                        try {
+                            Student.StudentAgeVerifier.validateAge(studentAge);
+                            System.out.println("Valid age");
+                            break;
+                        } catch (Student.InvalidAgeException e) {
+                            System.out.println("Invalid age" + e.getMessage());
                         }
+                    }
+
+
+//                        while (studentAge < 18 || studentAge > 150) {
+//                            System.out.println("Invalid age. Please enter a valid age");
+//                            studentAge = scanner.nextInt();
+//                        }
                     System.out.println("Enter student major: ");
                     String studentMajor = scanner.next();
                        boolean validMajor = false;

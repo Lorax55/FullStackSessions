@@ -1,22 +1,14 @@
-package Session2;
+package Session9;
 
 import java.util.Scanner;
 
-public class StudentInput {
-    public static void main(String[] args) {
-        Student student = new Student();
-        student.inputDetails();
-        student.displayStudent();
-    }
-}
-
-class Student {
+class Student2 {
     int id;
     String firstName;
     String lastName;
     int age;
 
-    public void inputDetails(){
+    public void inputDetails() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student identifier: ");
         id = scanner.nextInt();
@@ -30,11 +22,11 @@ class Student {
     }
 
     public void displayStudent() {
-    System.out.println("\n ===== Student details =====");
-    System.out.println("Student ID: " + id);
-    System.out.println("First name: " + firstName);
-    System.out.println("Last name: " + lastName);
-    System.out.println("Age: " + age);
-    System.out.println("====== Student Detilas =====");
+        System.out.println("\n ===== Student details =====");
+        System.out.println("Student ID: " + id);
+        System.out.println("First name: " + firstName);
+        System.out.println("Last name: " + lastName);
+        System.out.println("Age: " + age);
+        System.out.println("====== Student Detilas =====");
     }
 }
